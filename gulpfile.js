@@ -1,6 +1,11 @@
 var gulp = require("gulp"),
-    connect = require('gulp-connect'),
-    protractor = require("gulp-protractor").protractor;
+  connect = require('gulp-connect'),
+  protractor = require("gulp-protractor").protractor,
+  jsonServer = require('gulp-json-srv');
+
+gulp.task('json-server', function() {
+  jsonServer.start(); // start serving 'db.json' on port 3000
+});
 
 gulp.task('connect', function() {
   connect.server({
@@ -8,7 +13,7 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('e2e', ['connect'], function() {
+gulp.task('e2e', ['json-server', 'connect'], function() {
   return gulp.src(["test.js"])
     .pipe(protractor({
       configFile: "protractor.config.js",

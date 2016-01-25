@@ -14,8 +14,13 @@
 <body ng-app="gulpProtractorApp">
 
   <div class="container" ng-controller="MainController as vm">
-    <h1>Gulp with Protractor</h1>
-    <div id="message">{{ vm.message }}</div>
+    <h1 id="header">Gulp with Protractor</h1>
+    <div id="posts" ng-show="vm.posts.length">
+      <div ng-repeat="post in vm.posts">
+        {{ post.title }}
+      </div>
+    </div>
+    <div ng-show="!vm.posts.length">No posts... yet.</div>
   </div>
 
 </body>
